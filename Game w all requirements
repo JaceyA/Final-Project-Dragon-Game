@@ -1,0 +1,105 @@
+"""
+Dragon Realm Game (Modified Version)
+CIS 202 Final Project
+Group Members: [ADD ALL NAMES HERE]
+
+This module contains a modified version of the classic “Dragon Realm” game
+from InventWithPython. The game has been adapted to include a player lives
+system, life deduction for incorrect choices, and a replay prompt.
+"""
+
+import random
+import time
+
+def displayIntro():
+    """
+    Displays the introductory storyline explaining the setting of the game.
+    The player learns they are choosing between two caves—one safe, one deadly.
+
+    Parameters:
+        None
+
+    Returns:
+        None
+    """
+    print('''You are in a land full of dragons. In front of you,
+you see two caves. In one cave, the dragon is friendly
+and will share his treasure with you. The other dragon
+is greedy and hungry, and will eat you on sight.
+''')
+
+
+def chooseCave():
+    """
+    Prompts the player to choose between cave 1 or cave 2.
+    Ensures the input is valid.
+
+    Parameters:
+        None
+
+    Returns:
+        cave (str): The cave number chosen by the player ("1" or "2").
+    """
+    cave = ''
+    while cave != '1' and cave != '2':
+        print('Which cave will you go into? (1 or 2)')
+        cave = input()
+    return cave
+
+
+def checkCave(chosenCave):
+    """
+    Reveals whether the chosen cave contains a friendly or deadly dragon.
+    Uses randomness to determine which cave is safe.
+
+    Parameters:
+        chosenCave (str): The cave number selected by the player.
+
+    Returns:
+        int: 0 if the player survives (friendly dragon),
+             1 if the player loses a life (deadly dragon).
+    """
+    print('You approach the cave...')
+    time.sleep(2)
+    print('It is dark and spooky...')
+    time.sleep(2)
+    print('A large dragon jumps out in front of you! He opens his jaws and...')
+    print()
+    time.sleep(2)
+
+    friendlyCave = str(random.randint(1, 2))
+
+    if chosenCave == friendlyCave:
+        print("The dragon is friendly and gives you treasure!")
+        return 0
+    else:
+        print("The dragon eats you! You lose a life.")
+        return 1
+
+
+# -------- MAIN GAME LOOP --------
+# change 1: Added a lives system (player starts with 3 lives)
+# change 2: Added life deduction and “game over” condition
+# change 3: Added replay functionality after death
+
+player_lives = 3
+
+while player_lives > 0:
+    displayIntro()
+    caveNumber = chooseCave()
+    lost = checkCave(caveNumber)
+    player_lives -= lost
+    print(f"Lives left: {player_lives}")
+    print()
+
+print("You died.")
+
+print("Do you want to play again? (yes or no)")
+playAgain = input().lower()
+
+if playAgain == "yes":
+    # change 4: Added automatic restart by reloading the script behavior
+    player_lives = 3
+    print("\nRestart the program to play again.\n")
+
+print("Thanks for playing!")
