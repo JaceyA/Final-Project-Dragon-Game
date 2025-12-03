@@ -1,0 +1,52 @@
+
+import random
+import time
+
+def displayIntro():
+    print('''You are in a land full of dragons. In front of you,
+you see two caves. In one cave, the dragon is friendly
+and will share his treasure with you. The other dragon
+is greedy and hungry, and will eat you on sight.
+''')
+
+def chooseCave():
+    cave = ''
+    while cave != '1' and cave != '2':
+        print('Which cave will you go into? (1 or 2)')
+        cave = input()
+    return cave
+
+def checkCave(chosenCave):
+    print('You approach the cave...')
+    time.sleep(2)
+    print('It is dark and spooky...')
+    time.sleep(2)
+    print('A large dragon jumps out in front of you! He opens his jaws and...')
+    print()
+    time.sleep(2)
+
+    friendlyCave = str(random.randint(1, 2))
+
+    if chosenCave == friendlyCave:
+        print("The dragon is friendly and gives you treasure!")
+        return 0       # lost 0 lives
+    else:
+        print("The dragon eats you! You lose a life.")
+        return 1       # lost 1 life
+
+# -------- MAIN GAME LOOP --------
+player_lives = 3
+
+while player_lives > 0:
+    displayIntro()
+    caveNumber = chooseCave()
+    lost = checkCave(caveNumber)
+    player_lives -= lost
+    print(f"Lives left: {player_lives}")
+    print()
+
+print("You died.")
+print("Do you want to play again? (yes or no)")
+playAgain = input()
+
+print("Thanks for playing!")
