@@ -13,7 +13,7 @@ you see two caves. In one cave, the dragon is friendly
 and will share his treasure with you. The other dragon
 is greedy and hungry, and will eat you on sight.
 ''')
-#change: added an extra cave here
+#change 1: added an extra cave here
 def chooseCave():
     cave = ''
     while cave != '1' and cave != '2' and cave !='3':
@@ -31,16 +31,16 @@ def checkCave(chosenCave):
     time.sleep(2)
 
     friendlyCave = str(random.randint(1, 2))
-#change: added player lives system here
+#change 2: added player lives system here
     if chosenCave == friendlyCave:
         print("The dragon is friendly and gives you treasure!")
         return 0       # lost 0 lives
-#change: added loss of life for wrong choice 
+#change 3: added loss of life for wrong choice 
     else:
         print("The dragon eats you! You lose a life.")
         return 1       # lost 1 life
 
-# -------- MAIN GAME LOOP --------
+
 player_lives = 3
 
 while player_lives > 0:
@@ -50,7 +50,7 @@ while player_lives > 0:
     player_lives -= lost
     print(f"Lives left: {player_lives}")
     print()
-#change: took away the option to play again.
+#change 4: took away the option to play again.
 
 print("You died.")
 print("Thanks for playing!")
