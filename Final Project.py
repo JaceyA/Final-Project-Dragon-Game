@@ -1,3 +1,8 @@
+#Final Project of Modified Dragon Realm Game
+#Group members: Jacey Atkinson and Leovie Lopez
+#CIS 202 Final Project 
+#This is the modifed version of the Dragon Realm game from Invent with Python.
+#It has been adapted to include a player lives system, loss of life for wrong choices and a replay option.
 
 import random
 import time
@@ -26,10 +31,11 @@ def checkCave(chosenCave):
     time.sleep(2)
 
     friendlyCave = str(random.randint(1, 2))
-
+#added player lives system here
     if chosenCave == friendlyCave:
         print("The dragon is friendly and gives you treasure!")
         return 0       # lost 0 lives
+#added loss of life for wrong choice 
     else:
         print("The dragon eats you! You lose a life.")
         return 1       # lost 1 life
@@ -46,7 +52,8 @@ while player_lives > 0:
     print()
 
 print("You died.")
-print("Do you want to play again? (yes or no)")
+print("Do you dare to face the dragon again? (yes or no)")
 playAgain = input()
 
 print("Thanks for playing!")
+
